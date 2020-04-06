@@ -19,9 +19,9 @@ class Doctor extends Model {
       }
     );
 
-    this.addHook('beforeSave', async user => {
-      if (user.password) {
-        user.password_hash = await bcrypt.hash(user.password, 8);
+    this.addHook('beforeSave', async (doctor) => {
+      if (doctor.password) {
+        doctor.password_hash = await bcrypt.hash(doctor.password, 8);
       }
     });
 

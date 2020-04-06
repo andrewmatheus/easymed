@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 import Doctor from '../models/Doctor';
-import File from '../models/File';
 
 import SearchDoctorService from '../services/SearchDoctorService';
 

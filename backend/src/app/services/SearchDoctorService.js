@@ -1,4 +1,4 @@
-import request from 'request';
+import axios from 'axios';
 
 require('dotenv/config');
 
@@ -9,21 +9,11 @@ class SearchDoctorService {
     const chaveAPI = process.env.CHAVEAPI;
     const destino = process.env.DESTINOAPI;
     const path = `?tipo=${tipo}&uf=${state}&q=${number_crm}&chave=${chaveAPI}&destino=${destino}`;
-    console.log(path);
-    let data = '';
-    try {
-      request(`${hostname}${path}`, (err, res, body) => {
-        console.log(err);
-        console.log(body);
-        data = body;
-      });
-    } catch (error) {
-      throw new Error("Problem with the search!");
-    }
 
-    return data;
+    const apiResponse = await axios.get(`${hostname}${path}`);
+
+    return apiResponse.data;
   }
 }
 
 export default new SearchDoctorService();
-
